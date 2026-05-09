@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mandiarb | Smart Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e3e1",
+                        "outline-variant": "#c3c8c1",
+                        "on-surface-variant": "#434843",
+                        "tertiary-container": "#736f65",
+                        "surface-container": "#eeeeec",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary-fixed-variant": "#4a473e",
+                        "secondary-fixed": "#ffdbcf",
+                        "primary-fixed": "#d1e8d5",
+                        "outline": "#737873",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary": "#5a574d",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e8e2d6",
+                        "on-tertiary-fixed": "#1e1c14",
+                        "on-surface": "#1a1c1b",
+                        "on-tertiary-container": "#f9f3e7",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-bright": "#f9f9f7",
+                        "on-secondary-container": "#773319",
+                        "tertiary-fixed-dim": "#cbc6ba",
+                        "background": "#f9f9f7",
+                        "secondary-container": "#fd9e7b",
+                        "surface-container-low": "#f4f4f2",
+                        "surface-dim": "#dadad8",
+                        "inverse-on-surface": "#f1f1ef",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ffb59b",
+                        "on-secondary-fixed-variant": "#763218",
+                        "on-secondary-fixed": "#380d00",
+                        "surface-tint": "#4f6354",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#5f7464",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "inverse-surface": "#2f3130",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b5ccb9",
+                        "on-primary-container": "#e2f9e5",
+                        "primary": "#475b4c",
+                        "on-background": "#1a1c1b",
+                        "on-primary-fixed-variant": "#374b3d",
+                        "on-primary-fixed": "#0c1f13",
+                        "secondary": "#94492d",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b5ccb9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "xl": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-margin-mobile w-full h-16 bg-surface fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-headline-md">agriculture</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Mandiarb</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed overflow-hidden border border-outline-variant">
+<img alt="Profile" data-alt="A professional headshot of an Indian institutional trader in a minimalist office setting. The lighting is soft and natural, reflecting a bright and calm light-mode aesthetic. The color palette includes earth tones like sage green and sandy beige, maintaining a clean and modern professional look consistent with high-end fintech UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5JfcmaudmP9T6QURjhf2G80IA3Ya5Yz_DdEWTn88HNCySAJVOLdC4rlQGblALTd8QmBvux1AXMsBPUhQIvLLrlxmCuZ_FxwgYVUvWaSAul-IdDCw5QEEGGKtjJX0eAklTAbg_w-Xm7kN1Jdly-RV5i_FrF3u_6xczUNBecSFD5mTB_VI2un9b2lbdZLMCRO5b4LazrZKW9_4cPYpAbDoTJwHn5L-9DlN7JYl01LsTwnoUArF-WYPGlb4tdVa_dM8CL6t4RFR6Gwg"/>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-24 px-margin-mobile md:px-0 max-w-container-max mx-auto">
+<!-- Hero Search Section -->
+<section class="mb-lg">
+<div class="max-w-3xl mx-auto text-center mb-md">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">Find Global Parity</h2>
+<p class="font-body-md text-on-surface-variant">Discover high-margin arbitrage opportunities across 500+ Indian Mandis.</p>
+</div>
+<div class="max-w-3xl mx-auto relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full h-16 pl-14 pr-32 bg-surface-container-lowest border-none rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] focus:ring-2 focus:ring-primary-container text-body-lg placeholder:text-outline-variant transition-all" placeholder="Search commodities (e.g. Basmati Rice, Turmeric...)" type="text"/>
+<div class="absolute inset-y-2 right-2 flex items-center">
+<button class="h-12 px-6 bg-primary text-on-primary font-label-md rounded-lg hover:opacity-90 active:scale-95 transition-transform flex items-center gap-2">
+                        Execute Search
+                    </button>
+</div>
+</div>
+</section>
+<!-- Filter Chips Section -->
+<section class="mb-lg overflow-x-auto scrollbar-hide -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+<div class="flex items-center gap-sm min-w-max pb-2">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-outline-variant cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-body-sm">location_on</span>
+<span class="font-label-md">Source: Nashik</span>
+<span class="material-symbols-outlined text-body-sm">keyboard_arrow_down</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-outline-variant cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-body-sm">near_me</span>
+<span class="font-label-md">Dest: Mumbai</span>
+<span class="material-symbols-outlined text-body-sm">keyboard_arrow_down</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full border border-outline-variant cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-body-sm">category</span>
+<span class="font-label-md">Millets</span>
+<span class="material-symbols-outlined text-body-sm">keyboard_arrow_down</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-container rounded-full cursor-pointer transition-all">
+<span class="material-symbols-outlined text-body-sm">trending_up</span>
+<span class="font-label-md">Min Margin: 12%</span>
+<span class="material-symbols-outlined text-body-sm">close</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<button class="text-secondary font-label-md flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-body-sm">filter_list</span>
+                    More Filters
+                </button>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Recent Searches -->
+<aside class="lg:col-span-4 space-y-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm">Recent Searches</h3>
+<button class="text-label-md text-outline hover:text-primary transition-colors">Clear All</button>
+</div>
+<div class="space-y-sm">
+<!-- Search Item -->
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] flex items-center justify-between hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">history</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Premium Basmati Rice</p>
+<p class="font-label-sm text-on-surface-variant">Amritsar → Dubai Port</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] flex items-center justify-between hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">history</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Black Pepper (Organic)</p>
+<p class="font-label-sm text-on-surface-variant">Idukki → Chennai</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] flex items-center justify-between hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">history</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Yellow Maize Bulk</p>
+<p class="font-label-sm text-on-surface-variant">Indore → Haldia</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+</div>
+<!-- Insights Card -->
+<div class="mt-md p-6 bg-tertiary-fixed rounded-xl border border-outline-variant relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-label-sm text-on-tertiary-fixed-variant mb-xs">Market Alert</p>
+<h4 class="font-headline-sm text-on-tertiary-fixed mb-sm">Prices for Millets rising in Karnataka</h4>
+<button class="px-4 py-2 bg-tertiary text-on-tertiary rounded-lg font-label-md">View Opportunities</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10 rotate-12 text-on-tertiary-fixed">trending_up</span>
+</div>
+</aside>
+<!-- Trending Commodities (Bento Grid) -->
+<section class="lg:col-span-8">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-sm text-headline-sm">Trending Commodities</h3>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-variant">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-variant">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Bento Large Item -->
+<div class="md:row-span-2 p-6 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] flex flex-col justify-between group hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all">
+<div>
+<div class="flex justify-between items-start mb-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-sm">+18.4% Margin</span>
+</div>
+<h5 class="font-headline-md text-on-surface">Kashmiri Walnuts</h5>
+<p class="text-body-sm text-on-surface-variant mt-xs">Premium Grade L-1 exports showing highest demand in Western markets.</p>
+</div>
+<div class="mt-xl">
+<div class="flex items-center gap-2 mb-sm text-secondary">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-label-md">Srinagar → Ahmedabad</span>
+</div>
+<button class="w-full py-3 border-1.5 border-primary text-primary font-label-md rounded-full hover:bg-primary hover:text-on-primary transition-all">Analyze Trade Path</button>
+</div>
+</div>
+<!-- Bento Small Item 1 -->
+<div class="p-6 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all">
+<div class="flex justify-between items-center mb-md">
+<h5 class="font-headline-sm text-on-surface">Red Chillies</h5>
+<span class="px-2 py-1 bg-primary-fixed text-primary rounded font-label-sm">High Vol</span>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Current Avg</span>
+<span class="font-label-md text-on-surface">₹24,500/q</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-secondary"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant">Price up 4% this week in Guntur</p>
+</div>
+</div>
+<!-- Bento Small Item 2 -->
+<div class="p-6 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all">
+<div class="flex justify-between items-center mb-md">
+<h5 class="font-headline-sm text-on-surface">Dry Turmeric</h5>
+<span class="material-symbols-outlined text-secondary">trending_up</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-headline-md font-bold text-on-surface">₹12.2k</span>
+<span class="text-label-sm text-on-surface-variant mb-1">Target Price</span>
+</div>
+<div class="mt-md flex gap-2">
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-on-surface-variant">Nizamabad</span>
+<span class="px-2 py-1 bg-surface-container rounded font-label-sm text-on-surface-variant">Erode</span>
+</div>
+</div>
+</div>
+<!-- Secondary Grid Section -->
+<div class="mt-md grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] flex items-center gap-4 cursor-pointer hover:bg-primary-fixed transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary group-hover:bg-on-primary">
+<span class="material-symbols-outlined">restaurant_menu</span>
+</div>
+<span class="font-label-md">Pulses</span>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] flex items-center gap-4 cursor-pointer hover:bg-primary-fixed transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_florist</span>
+</div>
+<span class="font-label-md">Oil Seeds</span>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] flex items-center gap-4 cursor-pointer hover:bg-primary-fixed transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">grass</span>
+</div>
+<span class="font-label-md">Feed Fodder</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-container-lowest shadow-[0px_-4px_20px_rgba(95,116,100,0.06)] rounded-t-xl md:hidden">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-label-md">Arbitrage</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container transition-all px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md">Markets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container transition-all px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-md">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container transition-all px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">api</span>
+<span class="font-label-md">APIs</span>
+</a>
+</nav>
+<!-- Desktop Navigation Drawer (Hidden on mobile) -->
+<div class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-20 hover:w-64 bg-surface-bright shadow-xl group transition-all duration-300 z-40 flex-col py-6 overflow-hidden border-r border-outline-variant">
+<div class="space-y-4 px-4">
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md opacity-0 group-hover:opacity-100 transition-opacity">Trade History</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Logistics Partners</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md opacity-0 group-hover:opacity-100 transition-opacity">Tax Settings</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md opacity-0 group-hover:opacity-100 transition-opacity">Help Support</span>
+</a>
+</div>
+<div class="mt-auto px-4 border-t border-outline-variant pt-6">
+<div class="flex items-center gap-4 p-2">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex-shrink-0 flex items-center justify-center font-bold text-on-secondary-container">AK</div>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-md text-on-surface">Anil Kumar</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Premium Trader</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

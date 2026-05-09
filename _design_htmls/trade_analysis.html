@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mandiarb - Trade Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e3e1",
+                        "outline-variant": "#c3c8c1",
+                        "on-surface-variant": "#434843",
+                        "tertiary-container": "#736f65",
+                        "surface-container": "#eeeeec",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary-fixed-variant": "#4a473e",
+                        "secondary-fixed": "#ffdbcf",
+                        "primary-fixed": "#d1e8d5",
+                        "outline": "#737873",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary": "#5a574d",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e8e2d6",
+                        "on-tertiary-fixed": "#1e1c14",
+                        "on-surface": "#1a1c1b",
+                        "on-tertiary-container": "#f9f3e7",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-bright": "#f9f9f7",
+                        "on-secondary-container": "#773319",
+                        "tertiary-fixed-dim": "#cbc6ba",
+                        "background": "#f9f9f7",
+                        "secondary-container": "#fd9e7b",
+                        "surface-container-low": "#f4f4f2",
+                        "surface-dim": "#dadad8",
+                        "inverse-on-surface": "#f1f1ef",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ffb59b",
+                        "on-secondary-fixed-variant": "#763218",
+                        "on-secondary-fixed": "#380d00",
+                        "surface-tint": "#4f6354",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#5f7464",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "inverse-surface": "#2f3130",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b5ccb9",
+                        "on-primary-container": "#e2f9e5",
+                        "primary": "#475b4c",
+                        "on-background": "#1a1c1b",
+                        "on-primary-fixed-variant": "#374b3d",
+                        "on-primary-fixed": "#0c1f13",
+                        "secondary": "#94492d",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b5ccb9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "xl": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-line::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 24px;
+            bottom: -24px;
+            width: 1.5px;
+            background-color: #E8E2D6;
+        }
+        .step-line:last-child::before {
+            display: none;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(71, 91, 76, 0.1) 0%, rgba(249, 249, 247, 0) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- Top Navigation -->
+<header class="bg-surface dark:bg-surface-dim flex items-center justify-between px-margin-mobile w-full h-16 fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="agriculture">agriculture</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Mandiarb</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-md text-label-md px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full">ACTIVE TRADE</span>
+<button class="material-symbols-outlined text-on-surface-variant">share</button>
+</div>
+</header>
+<main class="pt-20 pb-32 px-margin-mobile max-w-container-max mx-auto">
+<!-- Hero Summary Section -->
+<div class="mb-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-xs">Nashik to Pune</h2>
+<p class="font-body-md text-on-surface-variant flex items-center gap-2">
+<span class="font-bold text-secondary">Onion (Garva)</span> • 14.5 MT Load • Grade A
+                    </p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/30 text-center min-w-[120px]">
+<p class="font-label-md text-on-surface-variant uppercase mb-1">Arbitrage</p>
+<p class="font-headline-sm text-headline-sm text-secondary">+₹4.20/kg</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/30 text-center min-w-[120px]">
+<p class="font-label-md text-on-surface-variant uppercase mb-1">Risk Level</p>
+<p class="font-headline-sm text-headline-sm text-primary">Low</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Price Trend Column -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- Line Chart Card -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)]">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-sm text-headline-sm">Market Price Convergence</h3>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 font-label-md"><span class="w-3 h-3 rounded-full bg-primary"></span> Nashik</span>
+<span class="flex items-center gap-1 font-label-md"><span class="w-3 h-3 rounded-full bg-secondary"></span> Pune</span>
+</div>
+</div>
+<!-- Minimalist SVG Chart Placeholder -->
+<div class="relative h-64 w-full border-b border-l border-outline-variant/30">
+<svg class="w-full h-full" viewbox="0 0 800 200">
+<!-- Area Fills -->
+<path d="M0 150 Q 100 130, 200 140 T 400 110 T 600 120 T 800 100 V 200 H 0 Z" fill="rgba(71, 91, 76, 0.05)"></path>
+<!-- Nashik Line -->
+<path d="M0 150 Q 100 130, 200 140 T 400 110 T 600 120 T 800 100" fill="none" stroke="#475b4c" stroke-linecap="round" stroke-width="3"></path>
+<!-- Pune Line -->
+<path d="M0 100 Q 100 80, 200 90 T 400 60 T 600 70 T 800 40" fill="none" stroke="#94492d" stroke-dasharray="8 4" stroke-linecap="round" stroke-width="3"></path>
+<!-- Data Points -->
+<circle cx="400" cy="110" fill="#475b4c" r="4"></circle>
+<circle cx="400" cy="60" fill="#94492d" r="4"></circle>
+</svg>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-surface text-on-surface px-3 py-1 rounded shadow-lg border border-outline-variant text-xs">
+                            Gap: ₹5.20 (Peak Opportunity)
+                        </div>
+</div>
+<div class="mt-4 flex justify-between font-label-md text-on-surface-variant">
+<span>06:00 AM</span>
+<span>09:00 AM</span>
+<span>12:00 PM (Peak)</span>
+<span>03:00 PM</span>
+<span>06:00 PM</span>
+</div>
+</div>
+<!-- Logistics Detail Card -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant/30">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
+<h4 class="font-headline-sm text-headline-sm text-sm">Transport Partner</h4>
+</div>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-lg object-cover" data-alt="A professional fleet logistics manager portrait in a clean, modern office setting with large window backgrounds showing cargo trucks. The lighting is soft and natural, emphasizing a light-mode aesthetic with earth tones and a professional corporate mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfkjpv30Iec2RSRfMugjdkjGVoDX67BksNbQ2QG32OV_7Jz2aI7sDI2gI4TGhPbGQ2T9mI_J2be2XKM53EJyERV_OeQaWB4Nk6I1UISk01fe0sGoQa99DjOBD6Vki_SvKvrathp5afj7TONFsMsha8QSjpjNJTV1ZbrDa5D38izF8kOag2WbBOrJQJxMj4Zgs5hAJtcUXS9QtdFE6Az4uafld9NAIPhe7d4lh8B_5LZeoVkGkMq7vAOrfP_3C0ojyr6sHi2coYvfc"/>
+<div>
+<p class="font-body-md font-bold">Sahyadri Logistics</p>
+<p class="font-label-md text-on-surface-variant">4.8 ★ • 120 Trades</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant/30">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="inventory_2">inventory_2</span>
+<h4 class="font-headline-sm text-headline-sm text-sm">Packaging Specs</h4>
+</div>
+<p class="font-body-md text-on-surface-variant">50kg Jute Bags • Ventilation Guard • Standard Branding</p>
+</div>
+</div>
+</div>
+<!-- Cost Breakdown Column -->
+<div class="lg:col-span-4">
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/20 sticky top-24">
+<h3 class="font-headline-sm text-headline-sm mb-lg border-b border-outline-variant/20 pb-4">Trade Breakdown</h3>
+<div class="space-y-gutter relative">
+<!-- Step 1 -->
+<div class="relative flex gap-4 step-line">
+<div class="z-10 w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-[18px]" data-icon="shopping_basket">shopping_basket</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="font-label-md text-on-surface-variant uppercase">Market Purchase</p>
+<p class="font-body-md font-bold text-primary">₹18.50/kg</p>
+</div>
+<p class="text-xs text-on-surface-variant">Nashik APMC Main Yard</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex gap-4 step-line">
+<div class="z-10 w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="font-label-md text-on-surface-variant uppercase">Mandi Tax (1%)</p>
+<p class="font-body-md font-bold">₹0.18/kg</p>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex gap-4 step-line">
+<div class="z-10 w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="package">package</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="font-label-md text-on-surface-variant uppercase">Packaging</p>
+<p class="font-body-md font-bold">₹0.75/kg</p>
+</div>
+<p class="text-xs text-on-surface-variant">High-grade Jute + Sorting</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative flex gap-4 step-line">
+<div class="z-10 w-8 h-8 rounded-full bg-surface-container-high border border-outline flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="font-label-md text-on-surface-variant uppercase">Transportation</p>
+<p class="font-body-md font-bold">₹2.10/kg</p>
+</div>
+<p class="text-xs text-on-surface-variant">Nashik - Pune (210km)</p>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="relative flex gap-4">
+<div class="z-10 w-8 h-8 rounded-full bg-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary text-[18px]" data-icon="sell">sell</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="font-label-md text-on-surface-variant uppercase">Target Market Sale</p>
+<p class="font-body-md font-bold text-secondary">₹25.75/kg</p>
+</div>
+<p class="text-xs text-on-surface-variant">Pune Gultekdi Market (Est.)</p>
+</div>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t-2 border-dashed border-outline-variant/30">
+<div class="flex justify-between items-center mb-base">
+<span class="font-body-md text-on-surface-variant">Total Cost Base</span>
+<span class="font-body-md">₹21.53/kg</span>
+</div>
+<div class="flex justify-between items-center text-primary font-bold">
+<span class="font-body-lg">Estimated Profit</span>
+<span class="font-headline-sm">₹4.22/kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar / Net Profit Banner -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-primary-container text-on-primary-container px-margin-mobile py-4 shadow-[0px_-4px_20px_rgba(95,116,100,0.15)] rounded-t-xl">
+<div class="max-w-container-max mx-auto flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div>
+<p class="font-label-md uppercase opacity-80 mb-1">Projected Net Profit</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-white">₹61,190.00</span>
+<span class="font-label-md text-primary-fixed">FOR 14.5 MT</span>
+</div>
+</div>
+<div class="hidden md:block h-10 w-px bg-on-primary-container/20"></div>
+<div class="hidden md:block">
+<p class="font-label-md uppercase opacity-80 mb-1">ROI</p>
+<p class="font-body-lg font-bold">19.6%</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-3 bg-white text-primary font-bold rounded-full hover:bg-surface transition-all active:scale-95">
+                    EXECUTE TRADE
+                </button>
+</div>
+</div>
+</footer>
+<!-- Mobile Bottom Navigation (Hidden on trade analysis for focus) -->
+<!-- Determined suppression of FAB and Nav because this is a "Focused journey / Task-Focused" page -->
+</body></html>

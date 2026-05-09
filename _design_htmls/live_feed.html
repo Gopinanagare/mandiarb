@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mandiarb | Live Arbitrage Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e3e1",
+                        "outline-variant": "#c3c8c1",
+                        "on-surface-variant": "#434843",
+                        "tertiary-container": "#736f65",
+                        "surface-container": "#eeeeec",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary-fixed-variant": "#4a473e",
+                        "secondary-fixed": "#ffdbcf",
+                        "primary-fixed": "#d1e8d5",
+                        "outline": "#737873",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary": "#5a574d",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e8e2d6",
+                        "on-tertiary-fixed": "#1e1c14",
+                        "on-surface": "#1a1c1b",
+                        "on-tertiary-container": "#f9f3e7",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-bright": "#f9f9f7",
+                        "on-secondary-container": "#773319",
+                        "tertiary-fixed-dim": "#cbc6ba",
+                        "background": "#f9f9f7",
+                        "secondary-container": "#fd9e7b",
+                        "surface-container-low": "#f4f4f2",
+                        "surface-dim": "#dadad8",
+                        "inverse-on-surface": "#f1f1ef",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ffb59b",
+                        "on-secondary-fixed-variant": "#763218",
+                        "on-secondary-fixed": "#380d00",
+                        "surface-tint": "#4f6354",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#5f7464",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "inverse-surface": "#2f3130",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b5ccb9",
+                        "on-primary-container": "#e2f9e5",
+                        "primary": "#475b4c",
+                        "on-background": "#1a1c1b",
+                        "on-primary-fixed-variant": "#374b3d",
+                        "on-primary-fixed": "#0c1f13",
+                        "secondary": "#94492d",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b5ccb9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "xl": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Montserrat"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f7;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim flex items-center justify-between px-margin-mobile w-full h-16 sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="agriculture">agriculture</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Mandiarb</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-surface-container-low transition-colors" data-icon="notifications">notifications</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" data-alt="A professional headshot of a South Asian male trader in his late 30s, wearing a smart casual linen shirt. The background is a blurred high-end office with warm wood textures and soft daylight. The aesthetic is clean, professional, and fits a minimalist light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDERtvqbQJwffKu1RJ-dFxgDwzWyX3w1ohTX9ctqdza_8nXZ7BWtJj9CNZxJQOwiNyvhk5t0xaui7BMcIh7qh6D4qCaLXPv91t18sVRxAeAjjwchJJPx4k0ccsvyZvTiJKu4qeriQ3WczQvbJt_XfY7MB1prn0jtsipnDg5HpBzpv5v28HpzihonKTiQdTHKFLEUdhqrQFnVxMarqmfZjBf4yv3xUw837rj-BCqO5FxQg9ClcJAnRyg0WgXQL_FaXRnKCtuFFrVKBw"/>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile py-8">
+<!-- Dashboard Header -->
+<div class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Arbitrage Opportunities</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Live cross-mandi price spreads and estimated logistical profits.</p>
+</div>
+<!-- Metrics Overview (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-xl">
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/30">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Active Deals</span>
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">124</div>
+<div class="text-primary font-label-sm text-label-sm mt-xs">+12% from yesterday</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/30">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Avg. ROI</span>
+<span class="material-symbols-outlined text-secondary" data-icon="percent">percent</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">14.2%</div>
+<div class="text-secondary font-label-sm text-label-sm mt-xs">Optimal window: 4h</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/30">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-md text-label-md text-outline uppercase tracking-wider">Volume Tracked</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="monitoring">monitoring</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">4.2k Tons</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm mt-xs">Across 42 Mandis</div>
+</div>
+</div>
+<!-- Live Arbitrage List -->
+<div class="space-y-md">
+<!-- Opportunity Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/20 hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Toor Dal</span>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-full font-label-sm text-label-sm">High Quality</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Buy from</span>
+<span class="font-body-md text-body-md font-semibold">Gulbarga</span>
+<span class="font-headline-sm text-headline-sm text-primary">₹7,200 <span class="text-label-sm font-normal">/qtl</span></span>
+</div>
+<div class="flex items-center text-outline-variant">
+<span class="material-symbols-outlined" data-icon="trending_flat">trending_flat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Sell at</span>
+<span class="font-body-md text-body-md font-semibold">Mumbai</span>
+<span class="font-headline-sm text-headline-sm text-secondary">₹8,850 <span class="text-label-sm font-normal">/qtl</span></span>
+</div>
+</div>
+</div>
+<div class="h-px md:h-12 w-full md:w-px bg-outline-variant/30"></div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Tax: 5%</span>
+<span class="font-body-md text-body-md">₹360</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Logistics</span>
+<span class="font-body-md text-body-md">₹2,400</span>
+</div>
+<div class="flex flex-col col-span-2 md:col-span-1">
+<span class="font-label-md text-label-md text-outline">ROI</span>
+<span class="font-body-md text-body-md font-bold text-secondary">12%</span>
+</div>
+</div>
+<div class="flex flex-col items-end justify-center min-w-[140px]">
+<span class="font-label-md text-label-md text-outline mb-xs">Est. Profit</span>
+<div class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-headline-sm text-headline-sm mb-sm">
+                            +₹1,290
+                        </div>
+<button class="text-secondary font-label-md text-label-md uppercase tracking-widest hover:underline flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Opportunity <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Opportunity Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/20 hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Basmati Rice</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-0.5 rounded-full font-label-sm text-label-sm">Premium</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Buy from</span>
+<span class="font-body-md text-body-md font-semibold">Karnal</span>
+<span class="font-headline-sm text-headline-sm text-primary">₹4,500 <span class="text-label-sm font-normal">/qtl</span></span>
+</div>
+<div class="flex items-center text-outline-variant">
+<span class="material-symbols-outlined" data-icon="trending_flat">trending_flat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Sell at</span>
+<span class="font-body-md text-body-md font-semibold">Dubai Port</span>
+<span class="font-headline-sm text-headline-sm text-secondary">₹5,900 <span class="text-label-sm font-normal">/qtl</span></span>
+</div>
+</div>
+</div>
+<div class="h-px md:h-12 w-full md:w-px bg-outline-variant/30"></div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Tax: 5%</span>
+<span class="font-body-md text-body-md">₹225</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Logistics</span>
+<span class="font-body-md text-body-md">₹1,100</span>
+</div>
+<div class="flex flex-col col-span-2 md:col-span-1">
+<span class="font-label-md text-label-md text-outline">ROI</span>
+<span class="font-body-md text-body-md font-bold text-secondary">18%</span>
+</div>
+</div>
+<div class="flex flex-col items-end justify-center min-w-[140px]">
+<span class="font-label-md text-label-md text-outline mb-xs">Est. Profit</span>
+<div class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-headline-sm text-headline-sm mb-sm">
+                            +₹1,075
+                        </div>
+<button class="text-secondary font-label-md text-label-md uppercase tracking-widest hover:underline flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Opportunity <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Opportunity Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(95,116,100,0.06)] border border-outline-variant/20 hover:shadow-[0px_8px_30px_rgba(95,116,100,0.12)] transition-all group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Yellow Maize</span>
+<span class="bg-outline-variant/20 text-on-surface-variant px-2 py-0.5 rounded-full font-label-sm text-label-sm">Standard</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Buy from</span>
+<span class="font-body-md text-body-md font-semibold">Nashik</span>
+<span class="font-headline-sm text-headline-sm text-primary">₹1,850 <span class="text-label-sm font-normal">/qtl</span></span>
+</div>
+<div class="flex items-center text-outline-variant">
+<span class="material-symbols-outlined" data-icon="trending_flat">trending_flat</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Sell at</span>
+<span class="font-body-md text-body-md font-semibold">Bengaluru</span>
+<span class="font-headline-sm text-headline-sm text-secondary">₹2,450 <span class="text-label-sm font-normal">/qtl</span></span>
+</div>
+</div>
+</div>
+<div class="h-px md:h-12 w-full md:w-px bg-outline-variant/30"></div>
+<div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Tax: 5%</span>
+<span class="font-body-md text-body-md">₹92</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-outline">Logistics</span>
+<span class="font-body-md text-body-md">₹320</span>
+</div>
+<div class="flex flex-col col-span-2 md:col-span-1">
+<span class="font-label-md text-label-md text-outline">ROI</span>
+<span class="font-body-md text-body-md font-bold text-secondary">10%</span>
+</div>
+</div>
+<div class="flex flex-col items-end justify-center min-w-[140px]">
+<span class="font-label-md text-label-md text-outline mb-xs">Est. Profit</span>
+<div class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-headline-sm text-headline-sm mb-sm">
+                            +₹188
+                        </div>
+<button class="text-secondary font-label-md text-label-md uppercase tracking-widest hover:underline flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Opportunity <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Section: Market Trends -->
+<div class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Market Trends</h3>
+<div class="bg-surface-container rounded-xl p-md border border-outline-variant/10 overflow-hidden relative min-h-[200px]">
+<img alt="Market Graph" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-multiply" data-alt="A clean, minimalist data visualization chart showing price fluctuations of agricultural commodities. The background is a soft beige linen texture, and the chart lines are elegant curves in sage green and clay terracotta. The overall feeling is one of professional data analysis with a grounding in earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFJWnNrPmJdL1MI7OWhujP7Vf0Bah_IBhhXoO2grOPB600D51E8vg34UgHDB4jLLraAN2rJ-6Q-ZRem0PkiVkAXgVrsTc5oZ_9-27wsthVg2NiyZQ_dMcEoe2XLSgQLEceVfOtklo82Yjsmh4DQRKl0UUJs8zUhUVWnjsuMj5izf6IMeyxluEqHwuq5To5x5Xhfw32KS9mV_HJZ4XgKpGO0TnlTXDPrCuBjDuqL3FJq8jUjWjTnU6LzIkVR6iXhU7KqfX7Tc1hPkg"/>
+<div class="relative z-10">
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                            Commodity prices are currently stabilizing in the central belt. Logistics costs from Karnataka have dropped by 4% due to fuel subsidies, increasing arbitrage windows for pulses.
+                        </p>
+<div class="mt-md flex gap-sm">
+<span class="bg-white/80 px-3 py-1 rounded-full text-label-sm font-label-sm text-primary">↑ Pulses</span>
+<span class="bg-white/80 px-3 py-1 rounded-full text-label-sm font-label-sm text-secondary">↓ Rice</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Quick Filter</h3>
+<div class="flex flex-wrap gap-sm">
+<button class="px-4 py-2 rounded-full border border-primary text-primary font-label-md text-label-md bg-primary-fixed">All Commodities</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors">Pulses</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors">Cereals</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors">Oilseeds</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors">Spices</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-container-lowest dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(95,116,100,0.06)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-md text-label-md">Arbitrage</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-all active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Markets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-all active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-all active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+<span class="font-label-md text-label-md">APIs</span>
+</a>
+</nav>
+</body></html>

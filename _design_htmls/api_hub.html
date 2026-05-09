@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e2e3e1",
+                      "outline-variant": "#c3c8c1",
+                      "on-surface-variant": "#434843",
+                      "tertiary-container": "#736f65",
+                      "surface-container": "#eeeeec",
+                      "surface-container-high": "#e8e8e6",
+                      "on-tertiary-fixed-variant": "#4a473e",
+                      "secondary-fixed": "#ffdbcf",
+                      "primary-fixed": "#d1e8d5",
+                      "outline": "#737873",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "tertiary": "#5a574d",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#e8e2d6",
+                      "on-tertiary-fixed": "#1e1c14",
+                      "on-surface": "#1a1c1b",
+                      "on-tertiary-container": "#f9f3e7",
+                      "surface-container-highest": "#e2e3e1",
+                      "surface-bright": "#f9f9f7",
+                      "on-secondary-container": "#773319",
+                      "tertiary-fixed-dim": "#cbc6ba",
+                      "background": "#f9f9f7",
+                      "secondary-container": "#fd9e7b",
+                      "surface-container-low": "#f4f4f2",
+                      "surface-dim": "#dadad8",
+                      "inverse-on-surface": "#f1f1ef",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#ffb59b",
+                      "on-secondary-fixed-variant": "#763218",
+                      "on-secondary-fixed": "#380d00",
+                      "surface-tint": "#4f6354",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-container": "#5f7464",
+                      "on-primary": "#ffffff",
+                      "surface": "#f9f9f7",
+                      "inverse-surface": "#2f3130",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#b5ccb9",
+                      "on-primary-container": "#e2f9e5",
+                      "primary": "#475b4c",
+                      "on-background": "#1a1c1b",
+                      "on-primary-fixed-variant": "#374b3d",
+                      "on-primary-fixed": "#0c1f13",
+                      "secondary": "#94492d",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#b5ccb9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "24px",
+                      "base": "8px",
+                      "sm": "12px",
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "lg": "40px",
+                      "margin-mobile": "16px",
+                      "xl": "64px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["Montserrat"],
+                      "body-sm": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Montserrat"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Montserrat"],
+                      "headline-lg-mobile": ["Montserrat"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f7;
+            color: #1a1c1b;
+        }
+        .tonal-card {
+            box-shadow: 0px 4px 20px rgba(95, 116, 100, 0.06);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim flex items-center justify-between px-margin-mobile w-full h-16 sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="agriculture">agriculture</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Mandiarb</h1>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full" data-icon="notifications">notifications</button>
+<div class="h-8 w-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-label-md">AK</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto p-margin-mobile md:p-gutter pb-32">
+<!-- Header Section -->
+<section class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">APIs</h2>
+<p class="text-on-surface-variant font-body-md">Manage your data source connections and monitor real-time scraping performance across Indian mandis.</p>
+</section>
+<!-- Top Overview Stats (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-lg">
+<!-- Data Scanned Gauge -->
+<div class="md:col-span-2 tonal-card bg-surface-container-lowest rounded-xl p-md flex flex-col md:flex-row items-center gap-md">
+<div class="relative flex items-center justify-center w-40 h-40">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="132" stroke-width="12"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline-md text-headline-md text-primary">70%</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Utilized</span>
+</div>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1">Global Scan Throughput</h3>
+<p class="text-on-surface-variant text-body-sm">Consolidated metric across all active mandi data hooks.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-sm rounded-lg">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-1">DATA SCANNED</span>
+<span class="font-headline-sm text-headline-sm text-primary">14.2 GB</span>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-1">DAILY LIMIT</span>
+<span class="font-headline-sm text-headline-sm text-secondary">20.0 GB</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Promotion / Identity Card -->
+<div class="tonal-card bg-primary-container rounded-xl p-md flex flex-col justify-between text-on-primary-container relative overflow-hidden">
+<div class="z-10">
+<span class="font-label-md text-label-md uppercase tracking-wider opacity-80 mb-2 block">Quick Action</span>
+<h3 class="font-headline-md text-headline-md mb-2">Sync All Mandis</h3>
+<p class="text-body-sm opacity-90 mb-4">Trigger a global refresh across all 10 verified data providers simultaneously.</p>
+<button class="bg-surface-container-lowest text-primary px-6 py-2 rounded-full font-label-md flex items-center gap-2 hover:bg-surface-bright transition-all active:scale-95 shadow-md">
+<span class="material-symbols-outlined" data-icon="sync">sync</span>
+                        GLOBAL REFRESH
+                    </button>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]" data-icon="query_stats">query_stats</span>
+</div>
+</div>
+</div>
+<!-- API Management Table -->
+<div class="tonal-card bg-surface-container-lowest rounded-xl overflow-hidden">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-primary">Active Data Hooks</h3>
+<div class="flex gap-base">
+<button class="material-symbols-outlined p-2 text-outline hover:text-primary transition-colors" data-icon="filter_list">filter_list</button>
+<button class="material-symbols-outlined p-2 text-outline hover:text-primary transition-colors" data-icon="search">search</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-high text-primary font-label-md text-label-md">
+<tr>
+<th class="px-md py-4">API SOURCE NAME</th>
+<th class="px-md py-4">STATUS</th>
+<th class="px-md py-4">LATENCY</th>
+<th class="px-md py-4">DAILY QUOTA</th>
+<th class="px-md py-4 text-right">ACTIONS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- API Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">Agmarknet Gateway</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">v2.4 Production</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    Scanning
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">124ms</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 85%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-tertiary-fixed rounded-lg text-on-tertiary-fixed">
+<span class="material-symbols-outlined" data-icon="public">public</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">Data.gov.in (OGD)</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">Rest API v1.0</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">450ms</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 22%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">UP Mandi Parishad</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">Regional Cluster v4</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    Scanning
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">89ms</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 98%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">MSAMB Maharashtra</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">Direct Mandi Stream</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">210ms</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 45%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-tertiary-fixed rounded-lg text-on-tertiary-fixed">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">Punjab Mandi Board</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">Legacy XML Hook</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-outline rounded-full"></span>
+                                    Idle
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">--</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 0%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 6 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed">
+<span class="material-symbols-outlined" data-icon="cloud_sync">cloud_sync</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">MP Mandi Board</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">E-Anugyan API</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">312ms</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 60%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 7 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">HAFED Haryana</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">Procurement Data v2</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    Scanning
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">155ms</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 78%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 8 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-tertiary-fixed rounded-lg text-on-tertiary-fixed">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">Karnataka KRISHI</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">Mobile App Backend</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">510ms</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 33%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 9 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed">
+<span class="material-symbols-outlined" data-icon="webhook">webhook</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">Gujarat GGRC</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">Market Price Feed</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    Scanning
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">190ms</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 54%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+<!-- API Row 10 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-secondary-fixed rounded-lg text-on-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="cell_tower">cell_tower</span>
+</div>
+<div>
+<span class="font-body-md font-semibold block">Rajasthan RSAMB</span>
+<span class="text-label-sm text-on-surface-variant font-label-sm">B-Mandi Portal Hook</span>
+</div>
+</div>
+</td>
+<td class="px-md py-4">
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-label-sm flex items-center gap-1 w-fit">
+<span class="w-1.5 h-1.5 bg-error rounded-full"></span>
+                                    Paused
+                                </span>
+</td>
+<td class="px-md py-4 font-label-md text-on-surface-variant">--</td>
+<td class="px-md py-4">
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 0%;"></div>
+</div>
+</td>
+<td class="px-md py-4 text-right">
+<button class="text-secondary hover:underline font-label-md flex items-center justify-end gap-1 ml-auto transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                                    Refresh
+                                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low text-center border-t border-outline-variant">
+<button class="text-primary font-label-md flex items-center justify-center gap-2 mx-auto hover:bg-surface-container-high px-4 py-2 rounded-lg transition-all">
+                    LOAD MORE SOURCES
+                    <span class="material-symbols-outlined" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+<!-- System Logs / Asymmetric Section -->
+<div class="mt-lg grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="tonal-card bg-surface-container-lowest rounded-xl p-md">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                    System Logs
+                </h3>
+<ul class="space-y-4">
+<li class="flex gap-4 border-l-2 border-primary pl-4 py-1">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">12:45 PM</span>
+<p class="text-body-sm">Agmarknet Gateway re-authenticated successfully. Scanning resumed.</p>
+</div>
+</li>
+<li class="flex gap-4 border-l-2 border-secondary pl-4 py-1">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">11:30 AM</span>
+<p class="text-body-sm">Daily quota exceeded for Rajasthan RSAMB. Auto-pausing hook.</p>
+</div>
+</li>
+<li class="flex gap-4 border-l-2 border-outline pl-4 py-1">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">09:00 AM</span>
+<p class="text-body-sm">Global refresh triggered. All 10 APIs updated successfully.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="tonal-card bg-surface-bright border border-outline-variant rounded-xl p-md flex items-center justify-center relative overflow-hidden group">
+<div class="text-center z-10">
+<span class="material-symbols-outlined text-primary text-[48px] mb-2" data-icon="cloud_download">cloud_download</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Export Scan Data</h3>
+<p class="text-on-surface-variant text-body-sm mb-4">Download the last 24 hours of raw mandi price data in CSV or JSON format.</p>
+<div class="flex gap-2 justify-center">
+<button class="border border-primary text-primary px-4 py-2 rounded-full font-label-md hover:bg-primary hover:text-white transition-all">CSV</button>
+<button class="border border-primary text-primary px-4 py-2 rounded-full font-label-md hover:bg-primary hover:text-white transition-all">JSON</button>
+</div>
+</div>
+<!-- Abstract Clay/Sage Shapes -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-secondary/5 rounded-full -ml-12 -mb-12 group-hover:scale-150 transition-transform"></div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-container-lowest dark:bg-inverse-surface shadow-[0px_-4px_20px_rgba(95,116,100,0.06)] rounded-t-xl md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-label-md text-label-md">Arbitrage</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Markets</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+<span class="font-label-md text-label-md">APIs</span>
+</div>
+</nav>
+<!-- Desktop Navigation Drawer (Visible on md and up) -->
+<aside class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-bright dark:bg-surface-dim shadow-xl z-40 flex-col p-6 space-y-4">
+<div class="mb-8 p-4 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary font-bold">Anil Kumar</h4>
+<span class="text-label-sm text-on-surface-variant block">Institutional Trader</span>
+</div>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-1 rounded text-[10px] font-bold">PREMIUM ACCOUNT</span>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low hover:pl-6 transition-all duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-md text-body-md">Trade History</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low hover:pl-6 transition-all duration-300 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-body-md text-body-md">Logistics Partners</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low hover:pl-6 transition-all duration-300 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-body-md text-body-md">Tax Settings</span>
+</a>
+<a class="flex items-center gap-3 p-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary font-bold rounded-lg hover:pl-6 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+<span class="font-body-md text-body-md">API Management</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low hover:pl-6 transition-all duration-300 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-body-md text-body-md">Help Support</span>
+</a>
+</nav>
+<div class="mt-auto p-4 border-t border-outline-variant">
+<button class="flex items-center gap-3 w-full text-error p-3 hover:bg-error-container rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</button>
+</div>
+</aside>
+<!-- FAB (Suppressed based on context: Settings/Manage screen) -->
+</body></html>
